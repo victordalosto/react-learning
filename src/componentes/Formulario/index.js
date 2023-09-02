@@ -14,6 +14,11 @@ const Formulario = (props) => {
 
     const aoEnviarFormulario = (event) => {
         event.preventDefault();
+        props.aoColaboratorCadastrado({nome, cargo, imagem, nivel});
+        setNome("");
+        setCargo("");
+        setImagem("");
+        setNivel("");
         console.log("Formulario enviado: ", nome, cargo, imagem, nivel);
     }
 
@@ -26,25 +31,25 @@ const Formulario = (props) => {
                     label="Nome"
                     placeholder="Digite seu nome"
                     valor={nome}
-                    aoAlterar={v => setNome(v)}
+                    aoAlterar={setNome}
                 />
                 <CampoTexto
                     obrigatorio={true}
                     label="Cargo"
                     placeholder="Digite seu cargo"
                     valor={cargo}
-                    aoAlterar={v => setCargo(v)}
+                    aoAlterar={setCargo}
                 />
                 <CampoTexto
                     obrigatorio={true}
                     label="Imagem"
                     placeholder="Digite o endereço da URL da imagem"
                     valor={imagem}
-                    aoAlterar={v => setImagem(v)}
+                    aoAlterar={setImagem}
                 />
                 <ListaSuspensa
                     label="Nível"
-                    itens={["Junior", "Pleno", "Senior"]}
+                    itens={props.times}
                     obrigatorio={true}
                     value={nivel}
                     OnChange={v => setNivel(v)}
